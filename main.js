@@ -1,11 +1,12 @@
 let rock = "piedra";
 let paper = "papel";
 let scissors = "tijeras";
+let playerCount;
+let computerCount;
 
 function getComputerChoice() {
     let computerSelection;
     let computerChoice = Math.floor(Math.random() * 3);
-    console.log(computerChoice);
     if (computerChoice === 0){
         computerSelection = rock;
         return computerSelection;
@@ -35,23 +36,30 @@ function playRound (playerSelection, computerSelection){
     if (playerSelection === computerSelection){
         console.log(`Un empate! ambos habéis elegido ${playerSelection}`)
     } else if(playerSelection === rock && computerSelection === scissors || playerSelection === paper && /* Winning cases of the player */
-        computerSelection === rock || playerSelection === scissors && computerSelection === paper) {
-            return console.log(`Has ganado! ${playerSelection} gana a ${computerSelection}`)
-            
+    computerSelection === rock || playerSelection === scissors && computerSelection === paper) {
+        console.log(`Has ganado! ${playerSelection} gana a ${computerSelection}`)
+        return playerCount++;    
         }
     else {
-        return console.log(`Has perdido! ${computerSelection} gana a ${playerSelection}` )
+        console.log(`Has perdido! ${computerSelection} gana a ${playerSelection}` )
+        return computerCount++;
     }
 
     
 }
 function game () {
-    let playerCount = 0;
-    let computerCount = 0;
+    playerCount = 0;
+    computerCount = 0;
     while (playerCount < 3 && computerCount < 3){
-        console.log(playerSelection = getPlayerChoice());
+        playerSelection = getPlayerChoice();
         computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection))
+        playRound(playerSelection, computerSelection);
+        console.log(`Vas ${playerCount} a ${computerCount}`)
+        if(playerCount === 3){
+            console.log(`Has ganado ${playerCount} a ${computerCount}! Enhorabuena`)
+        } else if(computerCount === 3) {
+            console.log(`Has perdido ${playerCount} a ${computerCount}.`)
+        }
     }
     
 }
