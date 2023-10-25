@@ -1,1 +1,1 @@
-# odin-paper-rock-scissors
+I'm going to create a Spanish version of the game Rock, Paper and Scissors in JavaScript
