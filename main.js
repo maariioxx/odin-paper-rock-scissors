@@ -2,8 +2,8 @@ let rock = "piedra";
 let paper = "papel";
 let scissors = "tijeras";
 
-let computerSelection;
 function getComputerChoice() {
+    let computerSelection;
     let computerChoice = Math.floor(Math.random() * 3);
     console.log(computerChoice);
     if (computerChoice === 0){
@@ -18,28 +18,26 @@ function getComputerChoice() {
     }
 }
 
-
-let playerSelection = "";
-while (playerSelection != rock && playerSelection != paper && playerSelection != scissors){
-    playerChoice = prompt("Elige piedra, papel o tijeras para jugar contra la máquina").toLowerCase();
-    if (playerChoice === "piedra"){
-        playerSelection = rock;
-        break
-    } else if (playerChoice === "papel"){
-        playerSelection = paper;
-        break
-    } else if (playerChoice === "tijeras"){
-        playerSelection = scissors;
-        break
+function getPlayerChoice (){
+    let playerSelection = "";
+    if (playerSelection != rock && playerSelection != paper && playerSelection != scissors){
+        let playerChoice = prompt("Elige piedra, papel o tijeras para jugar contra la máquina").toLowerCase();
+        if (playerChoice === "piedra"){
+            return playerSelection = rock;  
+        } else if (playerChoice === "papel"){
+            return playerSelection = paper;
+        } else if (playerChoice === "tijeras"){
+            return playerSelection = scissors;
+        }
     }
 }
-
 function playRound (playerSelection, computerSelection){
     if (playerSelection === computerSelection){
-        return console.log(`Un empate! ambos habéis elegido ${playerSelection}`)
+        console.log(`Un empate! ambos habéis elegido ${playerSelection}`)
     } else if(playerSelection === rock && computerSelection === scissors || playerSelection === paper && /* Winning cases of the player */
         computerSelection === rock || playerSelection === scissors && computerSelection === paper) {
             return console.log(`Has ganado! ${playerSelection} gana a ${computerSelection}`)
+            
         }
     else {
         return console.log(`Has perdido! ${computerSelection} gana a ${playerSelection}` )
@@ -48,8 +46,14 @@ function playRound (playerSelection, computerSelection){
     
 }
 function game () {
-    computerSelection = getComputerChoice();
-    console.log(playRound(playerSelection, computerSelection))
+    let playerCount = 0;
+    let computerCount = 0;
+    while (playerCount < 3 && computerCount < 3){
+        console.log(playerSelection = getPlayerChoice());
+        computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection))
+    }
+    
 }
 
 game()
