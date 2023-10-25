@@ -3,17 +3,17 @@ let paper = "papel";
 let scissors = "tijeras";
 
 function getComputerChoice() {
-    let computerSelecion;
+    let computerSelection;
     computerChoice = Math.floor(Math.random() * 3);
     if (computerChoice === 0){
-        computerSelecion = rock;
-        return computerSelecion;
+        computerSelection = rock;
+        return computerSelection;
     } else if (computerChoice === 1){
-        computerSelecion = paper;
-        return computerSelecion;
+        computerSelection = paper;
+        return computerSelection;
     } else {
-        computerSelecion = scissors;
-        return computerSelecion;
+        computerSelection = scissors;
+        return computerSelection;
     }
 }
 
@@ -32,7 +32,22 @@ while (playerSelection != rock && playerSelection != paper && playerSelection !=
         break
     }
 }
-console.log(playerChoice);
-console.log(playerSelection);
+
+function playRound (playerSelection, computerSelection){
+    if (playerSelection === computerSelection){
+        return console.log(`Un empate! ambos habéis elegido ${playerSelection}`)
+    } else if(playerSelection === rock && computerSelection === scissors || playerSelection === paper && /* Winning cases of the player */
+        computerSelection === rock || playerSelection === scissors && computerSelection === paper) {
+            return console.log(`Has ganado! ${playerSelection} gana a ${computerSelection}`)
+        }
+    else {
+        return console.log(`Has perdido! ${computerSelection} gana a ${playerSelection}` )
+    }
+
+    
+}
+
+computerSelection = getComputerChoice();
+
     
     
