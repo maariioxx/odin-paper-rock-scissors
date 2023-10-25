@@ -2,9 +2,10 @@ let rock = "piedra";
 let paper = "papel";
 let scissors = "tijeras";
 
+let computerSelection;
 function getComputerChoice() {
-    let computerSelection;
-    computerChoice = Math.floor(Math.random() * 3);
+    let computerChoice = Math.floor(Math.random() * 3);
+    console.log(computerChoice);
     if (computerChoice === 0){
         computerSelection = rock;
         return computerSelection;
@@ -46,8 +47,12 @@ function playRound (playerSelection, computerSelection){
 
     
 }
+function game () {
+    computerSelection = getComputerChoice();
+    console.log(playRound(playerSelection, computerSelection))
+}
 
-computerSelection = getComputerChoice();
+game()
 
     
     
