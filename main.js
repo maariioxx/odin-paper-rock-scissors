@@ -19,57 +19,41 @@ function getComputerChoice() {
   }
 }
 
-function getPlayerChoice() {
-  let playerSelection = "";
-  while (
-    playerSelection != rock &&
-    playerSelection != paper &&
-    playerSelection != scissors
-  ) {
-    let playerChoice = prompt(
-      "Elige piedra, papel o tijeras para jugar contra la máquina"
-    ).toLowerCase();
-    if (playerChoice === "piedra") {
-      return (playerSelection = rock);
-    } else if (playerChoice === "papel") {
-      return (playerSelection = paper);
-    } else if (playerChoice === "tijeras") {
-      return (playerSelection = scissors);
-    }
-  }
-}
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    console.log(`Un empate! ambos habéis elegido ${playerSelection}`);
+    resultsDisplay.textContent = (`Un empate! ambos habéis elegido ${playerSelection}`);
   } else if (
-    (playerSelection === rock && computerSelection === scissors) ||
-    (playerSelection === paper /* Winning cases of the player */ &&
-      computerSelection === rock) ||
-    (playerSelection === scissors && computerSelection === paper)
+            (playerSelection === rock && computerSelection === scissors) ||  /* Winning cases of the player */ 
+            (playerSelection === paper && computerSelection === rock) ||
+            (playerSelection === scissors && computerSelection === paper)
   ) {
-    console.log(`Has ganado! ${playerSelection} gana a ${computerSelection}`);
+    resultsDisplay.textContent = (`Has ganado! ${playerSelection} gana a ${computerSelection}`);
     return playerCount++;
   } else {
-    console.log(
-      `Has perdido!${playerSelection} pierde contra ${computerSelection}`
-    );
+    resultsDisplay.textContent = (`Has perdido!${playerSelection} pierde contra ${computerSelection}`);
     return computerCount++;
   }
 }
-function game() {
-  playerCount = 0;
-  computerCount = 0;
-  while (playerCount < 3 && computerCount < 3) {
-    playerSelection = getPlayerChoice();
-    computerSelection = getComputerChoice();
-    playRound(playerSelection, computerSelection);
-    console.log(`Vas ${playerCount} a ${computerCount}`);
-    if (playerCount === 3) {
-      console.log(`Has ganado ${playerCount} a ${computerCount}! Enhorabuena`);
-    } else if (computerCount === 3) {
-      console.log(`Has perdido ${playerCount} a ${computerCount}.`);
-    }
-  }
-}
 
-game();
+const btn = document.querySelectorAll("button");
+const rockBtn = document.querySelector("#rock")
+const paperBtn = document.querySelector("#paper")
+const scissorsBtn = document.querySelector("#scissors")
+
+rockBtn.addEventListener("click", () => {
+  playRound(rock, getComputerChoice());
+});
+
+scissorsBtn.addEventListener("click", () => {
+  playRound(scissors, getComputerChoice());
+});
+
+paperBtn.addEventListener("click", () => {
+  playRound(paper, getComputerChoice());
+});
+
+const resultsDisplay = document.createElement("div")
+document.body.appendChild(resultsDisplay);
+
+
+
