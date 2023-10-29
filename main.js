@@ -58,7 +58,9 @@ const getWinner = (playerCount, computerCount) => {
 
 const resetGame = () => {
   const resetButton = document.createElement("button");
-  document.body.appendChild(resetButton);
+  resetButton.classList.add("resultsDiv");
+  resetButton.id = "resetButton";
+  resultsDiv.appendChild(resetButton);
   resetButton.textContent = "Reiniciar juego";
   resetButton.addEventListener('click', () => {
     playerCount = 0;
@@ -84,9 +86,12 @@ btn.forEach(button => button.addEventListener('click', () => {
   getWinner(playerCount, computerCount);
 }));
 
+const resultsDiv = document.createElement("div");
+resultsDiv.classList.add("resultsDiv");
 const resultsDisplay = document.createElement("div")
-document.body.appendChild(resultsDisplay);
+resultsDiv.appendChild(resultsDisplay);
 
 const currentResultsDiv = document.createElement("div");
-  document.body.appendChild(currentResultsDiv);
+resultsDiv.appendChild(currentResultsDiv);
+document.body.appendChild(resultsDiv)
 
