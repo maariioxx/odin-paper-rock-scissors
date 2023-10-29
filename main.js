@@ -46,11 +46,11 @@ const currentResults = (playerCount, computerCount, tieCount) =>{
 const getWinner = (playerCount, computerCount) => {
   
   if(playerCount === 3){
-    resultsDisplay.remove();
+    resultsDisplay.innerHTML = "";
     currentResultsDiv.textContent = `Has ganado ${playerCount} a ${computerCount}! Enhorabuena!`;
     resetGame();
   } else if (computerCount === 3){
-    resultsDisplay.remove();
+    resultsDisplay.innerHTML = "";
     currentResultsDiv.textContent = `Has perdido ${computerCount} a ${playerCount}! Inténtalo de nuevo!`;
     resetGame();
   }
@@ -64,6 +64,8 @@ const resetGame = () => {
     playerCount = 0;
     computerCount = 0;
     tieCount = 0;
+    currentResultsDiv.innerHTML = "";
+    resetButton.remove();
   })
 }
 
