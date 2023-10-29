@@ -5,10 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Papel, Piedra, Tijeras</title>
     <script src="main.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <button id="rock" value="piedra">PIEDRA</button>
-    <button id="paper" value="papel">PAPEL</button>
-    <button id="scissors" value="tijeras">TIJERAS</button>
+    <h1>PIEDRA, PAPEL, TIJERAS</h1>
+    <div class="container">
+        <button id="rock" class="gameButton" value="piedra">
+            <img src="images/rock.png" alt="PIEDRA">
+        </button>
+        <button id="paper" class="gameButton" value="papel">
+            <img src="images/paper.png" id="paperImg" alt="PAPEL">
+        </button>
+        <button id="scissors" class="gameButton" value="tijeras">
+            <img src="images/scissors.png" alt="TIJERAS">
+        </button>
+    </div>
 </body>
 </html>
