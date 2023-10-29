@@ -1,8 +1,9 @@
 let rock = "piedra";
 let paper = "papel";
 let scissors = "tijeras";
-let playerCount;
-let computerCount;
+let playerCount = 0;
+let computerCount = 0;
+let tieCount = 0;
 
 function getComputerChoice() {
   let computerSelection;
@@ -21,7 +22,8 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    resultsDisplay.textContent = (`Un empate! ambos habéis elegido ${playerSelection}`);
+    resultsDisplay.textContent = `Empate! Ambos habéis escogido ${playerSelection}!`
+    return tieCount++;
   } else if (
             (playerSelection === rock && computerSelection === scissors) ||  /* Winning cases of the player */ 
             (playerSelection === paper && computerSelection === rock) ||
@@ -30,30 +32,59 @@ function playRound(playerSelection, computerSelection) {
     resultsDisplay.textContent = (`Has ganado! ${playerSelection} gana a ${computerSelection}`);
     return playerCount++;
   } else {
-    resultsDisplay.textContent = (`Has perdido!${playerSelection} pierde contra ${computerSelection}`);
+    resultsDisplay.textContent = (`Has perdido! ${playerSelection} pierde contra ${computerSelection}`);
     return computerCount++;
   }
 }
 
+const currentResults = (playerCount, computerCount, tieCount) =>{
+  if(playerCount < 3 && computerCount < 3){
+    currentResultsDiv.textContent = `Vas ${playerCount} a ${computerCount} con ${tieCount} empate/s. Ánimo!`
+  }
+}
+
+const getWinner = (playerCount, computerCount) => {
+  
+  if(playerCount === 3){
+    resultsDisplay.remove();
+    currentResultsDiv.textContent = `Has ganado ${playerCount} a ${computerCount}! Enhorabuena!`;
+    resetGame();
+  } else if (computerCount === 3){
+    resultsDisplay.remove();
+    currentResultsDiv.textContent = `Has perdido ${computerCount} a ${playerCount}! Inténtalo de nuevo!`;
+    resetGame();
+  }
+}
+
+const resetGame = () => {
+  const resetButton = document.createElement("button");
+  document.body.appendChild(resetButton);
+  resetButton.textContent = "Reiniciar juego";
+  resetButton.addEventListener('click', () => {
+    playerCount = 0;
+    computerCount = 0;
+    tieCount = 0;
+  })
+}
+
 const btn = document.querySelectorAll("button");
 const rockBtn = document.querySelector("#rock")
-const paperBtn = document.querySelector("#paper")
-const scissorsBtn = document.querySelector("#scissors")
+const paperBtn = document.querySelector("#paper");
+const scissorsBtn = document.querySelector("#scissors");
 
-rockBtn.addEventListener("click", () => {
-  playRound(rock, getComputerChoice());
-});
-
-scissorsBtn.addEventListener("click", () => {
-  playRound(scissors, getComputerChoice());
-});
-
-paperBtn.addEventListener("click", () => {
-  playRound(paper, getComputerChoice());
-});
+btn.forEach(button => button.addEventListener('click', () => {
+  playerSelection = button.value;
+  computerSelection = getComputerChoice();
+  
+  console.log(playerSelection);
+  playRound(playerSelection, computerSelection);
+  currentResults(playerCount, computerCount, tieCount);
+  getWinner(playerCount, computerCount);
+}));
 
 const resultsDisplay = document.createElement("div")
 document.body.appendChild(resultsDisplay);
 
-
+const currentResultsDiv = document.createElement("div");
+  document.body.appendChild(currentResultsDiv);
 
